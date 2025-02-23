@@ -27,7 +27,7 @@ jobs:
         run: pytest tests/
 
       - name: Upload test reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-reports
           path: reports/
@@ -50,6 +50,6 @@ jobs:
           chmod 600 deploy_key.pem
 
           ssh -o StrictHostKeyChecking=no -i deploy_key.pem $EC2_USER@$EC2_HOST "
-          cd /your-app-directory &&
+          cd /home/ubuntu/ &&
           git pull origin main &&
           docker-compose up -d --build"
