@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  selenium:
+    image: selenium/standalone-chrome
+    container_name: selenium
+    ports:
+      - "4444:4444"
+
+  test-runner:
+    image: python:3.9
+    container_name: pytest-runner
+    working_dir: /tests
+    volumes:
+      - .:/tests
+    command: pytest test_devops.py
