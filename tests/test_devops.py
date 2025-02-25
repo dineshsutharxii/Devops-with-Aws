@@ -2,7 +2,7 @@ import pytest
 
 #This is just fun/learning testfile
 def test_sum_of_two_numbers():
-	assert 2 + 3 == 5
+	assert 3 + 3 == 6
 def test_multi_of_two_numbers():
 	assert 2 * 3 == 6
 
