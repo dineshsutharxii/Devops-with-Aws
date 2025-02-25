@@ -32,24 +32,24 @@ jobs:
           name: test-reports
           path: reports/
 
-  # deploy:
-  #   needs: build  # Run deployment only if the build (tests) succeed
-  #   runs-on: ubuntu-latest
+   deploy:
+     needs: build  # Run deployment only if the build (tests) succeed
+     runs-on: ubuntu-latest
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
+     steps:
+       - name: Checkout code
+         uses: actions/checkout@v3
 
-  #     - name: Deploy to AWS EC2
-  #       env:
-  #         SSH_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-  #         EC2_USER: ubuntu
-  #         EC2_HOST: ${{ secrets.EC2_HOST }}
-  #       run: |
-  #         echo "$SSH_KEY" > deploy_key.pem
-  #         chmod 600 deploy_key.pem
+       - name: Deploy to AWS EC2
+         env:
+           SSH_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+           EC2_USER: ubuntu
+           EC2_HOST: ${{ secrets.EC2_HOST }}
+         run: |
+           echo "$SSH_KEY" > deploy_key.pem
+           chmod 600 deploy_key.pem
 
-  #         ssh -o StrictHostKeyChecking=no -i deploy_key.pem $EC2_USER@$EC2_HOST "
-  #         cd /home/ubuntu/Devops-with-Aws &&
-  #         git pull origin main &&
-  #         docker-compose up -d --build"
+           ssh -o StrictHostKeyChecking=no -i deploy_key.pem $EC2_USER@$EC2_HOST "
+           cd /home/ubuntu/Devops-with-Aws &&
+          git pull origin main &&
+         docker-compose up -d --build"
